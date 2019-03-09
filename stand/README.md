@@ -18,3 +18,5 @@ Do the following steps:
 - `bash image.sh` (for taking snapshot)
 
 You can look at the result in the `snapshots` folder.
+
+Also, you can access Grafana via opening [](localhost:3000) in your browser. Login/password: admin/admin.
