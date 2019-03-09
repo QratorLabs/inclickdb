@@ -19,4 +19,4 @@ Do the following steps:
 
 You can look at the result in the `snapshots` folder.
 
-Also, you can access Grafana via opening [](localhost:3000) in your browser. Login/password: admin/admin.
+Also, you can access Grafana via opening [localhost:3000](localhost:3000) in your browser. Login/password: admin/admin.
