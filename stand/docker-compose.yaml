@@ -43,13 +43,9 @@ grafana:
   links:
   - clickhouse
 grafana-key:
-  image: jfloff/alpine-python:3.6-onbuild
+  build: grafana-key
   volumes:
-  - ./key.sh:/key.sh
-  - ./get_key.py:/get_key.py
-  - ./grafana:/grafana
-  entrypoint:
-    bash /key.sh
+  - ./grafana-key:/grafana-key
   links:
   - grafana
 
