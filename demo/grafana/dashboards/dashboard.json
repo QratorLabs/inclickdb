@@ -15,7 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
+  "iteration": 1556231134293,
   "links": [],
   "panels": [
     {
@@ -64,7 +64,7 @@
           "formattedQuery": "",
           "hide": false,
           "intervalFactor": 1,
-          "query": "SELECT\n$timeSeries as t,\navg(Value)\nFROM $table\nWHERE $timeFilter\nAND Path='my.awesome.path'\nGROUP BY t\nORDER BY t",
+          "query": "SELECT \n$timeSeries as t, \navg(Value) \nFROM graphite \nALL INNER JOIN \n( \nSELECT Path \nFROM graphite_tagged \nWHERE \nTag1 = '$tag'\nor Tag1 = '$tag1' \nGROUP BY (Path, Tags) \nHAVING count(Tag1) == 2 \n) USING  Path \nWHERE $timeFilter \nGROUP BY t \nORDER BY t",
           "rawQuery": "",
           "refId": "A",
           "round": "0s",
@@ -118,7 +118,60 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "tag2=0",
+          "value": "tag2=0"
+        },
+        "datasource": "ClickHouse",
+        "definition": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "tag",
+        "options": [],
+        "query": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "host=local",
+          "value": "host=local"
+        },
+        "datasource": "ClickHouse",
+        "definition": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "tag1",
+        "options": [],
+        "query": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-5m",
@@ -152,5 +205,5 @@
   "timezone": "",
   "title": "dh",
   "uid": "JE7rYbjmz",
-  "version": 2
+  "version": 1
 }
