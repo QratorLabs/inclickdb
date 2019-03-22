@@ -1,0 +1,22 @@
+version: 2
+jobs:
+ build:
+   machine: true
+   steps:
+     - checkout
+     - run: |
+         cd stand
+         (docker-compose up)&
+         sleep 180
+         (timeout 30 bash generator.sh)&
+         sleep 20
+         bash image.sh
+         ls grafana
+         ls
+         docker ps
+         sleep 30
+         docker stop stand_grafana_1
+         docker stop stand_carbon-clickhouse_1
+         docker stop stand_clickhouse_1
+         
+
