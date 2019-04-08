@@ -29,6 +29,8 @@ carbon-clickhouse:
       - "2006:2006" # prometheus remote write
     links:
       - clickhouse
+    depends_on:
+      - clickhouse
 grafana:
     image: grafana/grafana
     ports:
