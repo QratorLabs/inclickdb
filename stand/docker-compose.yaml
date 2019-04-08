@@ -6,7 +6,7 @@ clickhouse:
     - "./rollup.xml:/etc/clickhouse-server/config.d/rollup.xml"
     - "./data/clickhouse/data:/var/lib/clickhouse/data"
     - "./data/clickhouse/metadata:/var/lib/clickhouse/metadata"
-  clickhouse-init:
+clickhouse-init:
     image: yandex/clickhouse-server
     volumes:
       - "./init.sql:/init.sql"
@@ -17,7 +17,7 @@ clickhouse:
         cat /init.sql | clickhouse client --host clickhouse --multiquery'
     links:
       - clickhouse
-  carbon-clickhouse:
+carbon-clickhouse:
     image: lomik/carbon-clickhouse:v0.9.1
     volumes:
       - "./data/carbon-clickhouse:/data/carbon-clickhouse"
@@ -29,7 +29,7 @@ clickhouse:
       - "2006:2006" # prometheus remote write
     links:
       - clickhouse
-  grafana:
+grafana:
     image: grafana/grafana
     ports:
       - "3000:3000"
@@ -42,7 +42,7 @@ clickhouse:
       - GF_INSTALL_PLUGINS=vertamedia-clickhouse-datasource
     links:
       - clickhouse
-  grafana-key:
+grafana-key:
     image: python:3.6-alpine
     volumes:
       - ./grafana-key:/grafana-key
