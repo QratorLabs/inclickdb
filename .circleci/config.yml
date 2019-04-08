@@ -33,7 +33,7 @@ jobs:
           name: image
           command: |
             dockerize -wait tcp://localhost:2003 -timeout 2m
-            bash stand/image.sh
+            #bash stand/image.sh
 
 
       - run:
