@@ -14,7 +14,7 @@ response = requests.post('http://admin:admin@grafana:3000/api/auth/keys', header
 
 try:
     key = response.json()['key']
-    with open('/grafana/key.txt', 'w') as out:
+    with open('/grafana-key/key.txt', 'w') as out:
         out.write(key)
 except KeyError:
     pass
