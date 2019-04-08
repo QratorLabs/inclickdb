@@ -1,10 +1,10 @@
 version: 2
 jobs:
- build:
-   machine: true
-   steps:
-     - checkout
-     - run: |
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run: |
          cd stand
          (docker-compose up)&
          sleep 180
@@ -15,8 +15,20 @@ jobs:
          ls
          docker ps
          sleep 30
-         docker stop stand_grafana_1
-         docker stop stand_carbon-clickhouse_1
-         docker stop stand_clickhouse_1
-         
+
+
+
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+
+
+      - run:
+          name: creating artifacts dir
+          command: mkdir /artifacts
+
+      - store_artifacts:
+          path: /artifact
 
