@@ -10,6 +10,7 @@ jobs:
       - run:
           name: compose_to_be_removed
           command: |
+            cd stand
             docker-compose up
           background: true
 
