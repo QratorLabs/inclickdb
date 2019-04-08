@@ -3,31 +3,33 @@ jobs:
   build:
     machine: true
 
-    #workDir: workdir
+    workDir: /home/circleci/project/stand
 
     steps:
       - checkout
-      - run: |
-          ls
-          pwd
-          cd stand
-          (docker-compose up)&
-          sleep 180
-          (timeout 30 bash generator.sh)&
-          sleep 20
-          bash image.sh
-          ls grafana
-          ls
-          docker ps
-          sleep 30
-
-
+      - run:
+          name: compose_to_be_removed
+          command: |
+            docker-compose up
+          background: true
 
       - run:
           name: install dockerize
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.3.0
+
+
+      - run:
+          name: generator
+          command: |
+            dockerize -wait tcp://clickhouse:2003 -timeout 2m
+            timeout 30 bash generator.sh
+          background: true
+
+      - run:
+          name: image
+          command: bash image.sh
 
 
       - run:
