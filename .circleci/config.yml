@@ -3,7 +3,7 @@ jobs:
   build:
     machine: true
 
-    workDir: /home/circleci/project/stand
+    workDir: /
 
     steps:
       - checkout
