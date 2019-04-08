@@ -3,7 +3,7 @@ jobs:
   build:
     machine: true
 
-    workDir: /
+    workDir: /home/circleci/project/stand
 
     steps:
       - checkout
@@ -12,6 +12,8 @@ jobs:
           command: |
             ls
             pwd
+            ls
+            cd stand
 
 
       - run:
