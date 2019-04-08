@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  build:
+    machine: true
+
+    steps:
+
+      - checkout
+
+      - run:
+          name: compose_to_be_removed
+          command: |
+            cd stand
+            pwd
+            ls
+            docker-compose up
+          background: true
+
+      - run:
+          name: install dockerize
+          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+
+
+      - run:
+          name: generator
+          command: |
+            dockerize -wait tcp://clickhouse:2003 -timeout 2m
+            timeout 30 bash stand/generator.sh
+          background: true
+
+      - run:
+          name: image
+          command: |
+            dockerize -wait tcp://localhost:2003 -timeout 2m
+            dockerize -wait tcp://localhost:3000 -timeout 2m
+            sleep 120
+            bash stand/image.sh
+
+
+      - run:
+          name: creating artifacts dir
+          command: mkdir stand/artifacts
