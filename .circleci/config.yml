@@ -5,14 +5,6 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: whereami
-          command: |
-            ls
-            pwd
-            ls
-            cd stand
-
 
       - run:
           name: compose_to_be_removed
@@ -39,7 +31,9 @@ jobs:
 
       - run:
           name: image
-          command: bash stand/image.sh
+          command: |
+            dockerize -wait tcp://clickhouse:2003 -timeout 2m
+            bash stand/image.sh
 
 
       - run:
