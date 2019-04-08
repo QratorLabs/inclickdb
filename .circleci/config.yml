@@ -3,8 +3,6 @@ jobs:
   build:
     machine: true
 
-    workDir: /home/circleci/project/stand
-
     steps:
       - checkout
       - run:
@@ -19,7 +17,7 @@ jobs:
       - run:
           name: compose_to_be_removed
           command: |
-            docker-compose up
+            docker-compose up stand/
           background: true
 
       - run:
@@ -33,12 +31,12 @@ jobs:
           name: generator
           command: |
             dockerize -wait tcp://clickhouse:2003 -timeout 2m
-            timeout 30 bash generator.sh
+            timeout 30 bash stand/generator.sh
           background: true
 
       - run:
           name: image
-          command: bash image.sh
+          command: bash stand/image.sh
 
 
       - run:
