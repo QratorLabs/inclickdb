@@ -9,9 +9,11 @@ jobs:
       - checkout
       - run:
           name: whereami
-          command:|
+          command: |
             ls
             pwd
+
+
       - run:
           name: compose_to_be_removed
           command: |
