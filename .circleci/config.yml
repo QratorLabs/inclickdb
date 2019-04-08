@@ -26,7 +26,7 @@ jobs:
       - run:
           name: generator
           command: |
-            dockerize -wait tcp://clickhouse:2003 -timeout 2m
+            dockerize -wait tcp://localhost:2003 -timeout 2m
             timeout 30 bash stand/generator.sh
           background: true
 
