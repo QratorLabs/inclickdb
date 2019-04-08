@@ -8,6 +8,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: whereami
+          command:|
+            ls
+            pwd
+      - run:
           name: compose_to_be_removed
           command: |
             docker-compose up
