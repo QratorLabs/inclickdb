@@ -26,15 +26,15 @@ jobs:
       - run:
           name: generator
           command: |
-            dockerize -wait tcp://localhost:2003 -timeout 2m
+            dockerize -wait tcp://localhost:2003 -timeout 4m
             timeout 30 bash stand/generator.sh
           background: true
 
       - run:
           name: image
           command: |
-            dockerize -wait tcp://localhost:2003 -timeout 2m
-            dockerize -wait tcp://localhost:3000 -timeout 2m
+            dockerize -wait tcp://localhost:2003 -timeout 4m
+            dockerize -wait tcp://localhost:3000 -timeout 4m
             sleep 120
             bash stand/image.sh
 
