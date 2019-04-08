@@ -33,7 +33,8 @@ jobs:
           name: image
           command: |
             dockerize -wait tcp://localhost:2003 -timeout 2m
-            #bash stand/image.sh
+            sleep 30
+            bash stand/image.sh
 
 
       - run:
@@ -41,5 +42,5 @@ jobs:
           command: mkdir stand/artifacts
 
       - store_artifacts:
-          path: /artifact
+          path: stand/artifact
 
