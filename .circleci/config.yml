@@ -33,7 +33,8 @@ jobs:
           name: image
           command: |
             dockerize -wait tcp://localhost:2003 -timeout 2m
-            sleep 30
+            dockerize -wait tcp://clickhouse:8123 -timeout 2m
+            sleep 120
             bash stand/image.sh
 
 
