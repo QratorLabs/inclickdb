@@ -10,9 +10,6 @@ jobs:
       - run:
           name: compose_to_be_removed
           command: |
-            cd stand
-            pwd
-            ls
             docker-compose up
           background: true
 
@@ -27,7 +24,7 @@ jobs:
           name: generator
           command: |
             dockerize -wait tcp://localhost:2003 -timeout 4m
-            timeout 30 bash stand/generator.sh
+            bash stand/generator.sh
           background: true
 
       - run:
