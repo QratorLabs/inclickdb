@@ -38,7 +38,7 @@ jobs:
 
       - run:
           name: creating artifacts dir
-          command: mkdir /artifacts
+          command: mkdir stand/artifacts
 
       - store_artifacts:
           path: /artifact
