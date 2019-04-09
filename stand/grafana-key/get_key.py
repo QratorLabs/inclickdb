@@ -17,6 +17,7 @@ try:
     with open('/grafana-key/key.txt', 'w') as out:
         out.write(key)
 except KeyError:
+    print('wtf')
     pass
 
 
