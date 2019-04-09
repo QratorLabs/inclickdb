@@ -18,6 +18,5 @@ try:
         out.write(key)
 except KeyError:
     print('wtf')
-    pass
 
 
