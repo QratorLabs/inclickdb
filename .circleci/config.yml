@@ -34,6 +34,7 @@ jobs:
             dockerize -wait tcp://localhost:2003 -timeout 4m
             dockerize -wait tcp://localhost:3000 -timeout 4m
             sleep 240
+            ls stand/grafana-key
             bash stand/image.sh
 
 
