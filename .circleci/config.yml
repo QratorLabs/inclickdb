@@ -33,12 +33,10 @@ jobs:
           command: |
             dockerize -wait tcp://localhost:2003 -timeout 4m
             dockerize -wait tcp://localhost:3000 -timeout 4m
-            sleep 240
+            sleep 120
             cd stand
-            ls grafana-key
             bash image.sh
 
 
-      - run:
-          name: creating artifacts dir
-          command: mkdir stand/artifacts
+      - store_artifacts:
+          path: stand/snapshots
