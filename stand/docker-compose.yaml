@@ -6,7 +6,7 @@ clickhouse:
     - "./rollup.xml:/etc/clickhouse-server/config.d/rollup.xml"
     - "./data/clickhouse/data:/var/lib/clickhouse/data"
     - "./data/clickhouse/metadata:/var/lib/clickhouse/metadata"
-      
+
 clickhouse-init:
     image: yandex/clickhouse-server
     volumes:
@@ -52,6 +52,6 @@ grafana-key:
       - ./grafana-key:/grafana-key
     entrypoint: |
       sh -c '
-        pip install requests && python /grafana-key/get_key.py'
+        pip install requests && python /grafana-key/get_key.py && echo 'ok'
     links:
       - grafana
