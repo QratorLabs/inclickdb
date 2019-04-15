@@ -20,6 +20,10 @@ jobs:
           environment:
             DOCKERIZE_VERSION: v0.3.0
 
+      - run:
+          name: tmp
+          command: sleep 120
+
 
       - run:
           name: generator
