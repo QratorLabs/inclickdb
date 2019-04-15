@@ -53,6 +53,7 @@ grafana-key:
       - ./grafana-key:/grafana-key
     entrypoint: |
       sh -c '
+        ls
         pip install requests && python /grafana-key/get_key.py && cat grafana-key/key.txt'
     links:
       - grafana
