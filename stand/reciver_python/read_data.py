@@ -15,7 +15,8 @@ def parse_tag(tag_value):
 
 if __name__ == "__main__":
 
-    for i in range(100):
+    #for i in range(100):
+    while True:
         sock.listen(1)
         conn, addr = sock.accept()
         data = conn.recv(100)
