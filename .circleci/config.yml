@@ -28,15 +28,5 @@ jobs:
             bash stand/generator.sh
           background: true
 
-      - run:
-          name: image
-          command: |
-            dockerize -wait tcp://localhost:2003 -timeout 4m
-            dockerize -wait tcp://localhost:3000 -timeout 4m
-            sleep 120
-            cd stand
-            bash image.sh
-
-
       - store_artifacts:
           path: stand/snapshots

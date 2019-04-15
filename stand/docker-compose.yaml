@@ -20,15 +20,14 @@ clickhouse-init:
       - clickhouse
 
 carbon-clickhouse:
-    image: lomik/carbon-clickhouse:v0.9.1
-    volumes:
-      - "./data/carbon-clickhouse:/data/carbon-clickhouse"
-      - "./carbon-clickhouse.conf:/etc/carbon-clickhouse/carbon-clickhouse.conf"
+    build: reciver_python
     ports:
       - "2003:2003" # plain tcp
       - "2003:2003/udp" # plain udp
       - "2004:2004" # pickle
       - "2006:2006" # prometheus remote write
+    entrypoint:
+      python /read_data.py
     links:
       - clickhouse
 
