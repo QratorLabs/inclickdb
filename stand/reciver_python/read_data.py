@@ -1,4 +1,5 @@
 import socket
+from clickhouse_driver.client import Client
 
 sock = socket.socket()
 PORT = 2003
@@ -31,4 +32,6 @@ if __name__ == "__main__":
             path = tmp[0]
             for tag_value in tmp[1:]:
                 tag, value = parse_tag(tag_value)
+        client = Client('clickhouse')
+        print(client.execute('select 1'))
 

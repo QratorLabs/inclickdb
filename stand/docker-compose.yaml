@@ -28,7 +28,8 @@ data-receiver:
       - "2003:2003/udp" # plain udp
       - "2004:2004" # pickle
       - "2006:2006" # prometheus remote write
-    entrypoint:
+    entrypoint: |
+      bash pip install clickhouse_driver
       python /read_data.py
     links:
       - clickhouse
