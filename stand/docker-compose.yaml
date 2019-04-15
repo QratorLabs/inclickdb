@@ -29,7 +29,7 @@ data-receiver:
       - "2004:2004" # pickle
       - "2006:2006" # prometheus remote write
     entrypoint: |
-      bash pip install clickhouse_driver
+      pip install clickhouse_driver
       python /read_data.py
     links:
       - clickhouse
