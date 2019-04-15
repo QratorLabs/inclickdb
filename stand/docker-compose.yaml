@@ -20,7 +20,9 @@ clickhouse-init:
       - clickhouse
 
 carbon-clickhouse:
-    build: reciver_python
+    image: python:3.6-alpine
+    volumes:
+      - "reciver_python/read_data.py:/read_data.py"
     ports:
       - "2003:2003" # plain tcp
       - "2003:2003/udp" # plain udp
