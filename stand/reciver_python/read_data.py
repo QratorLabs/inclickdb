@@ -16,6 +16,12 @@ def parse_tag(tag_value):
 
 if __name__ == "__main__":
 
+    client = Client('clickhouse')
+    print(client.execute('CREATE TABLE minutes_tmp(\n\
+    symbol String,\n\
+    dt DateTime,\n\
+    last_volume UInt32\n\
+    ) ENGINE = Log;'))
     #for i in range(100):
     while True:
         sock.listen(1)
@@ -32,6 +38,6 @@ if __name__ == "__main__":
             path = tmp[0]
             for tag_value in tmp[1:]:
                 tag, value = parse_tag(tag_value)
-        client = Client('clickhouse')
-        print(client.execute('select 1'))
+
+
 
