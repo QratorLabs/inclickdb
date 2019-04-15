@@ -24,10 +24,10 @@ if __name__ == "__main__":
         udata = data.decode("utf-8")
         data = udata.split()
         print("Data: ",  udata, data)
-        #timestamp = data[-1]
-        #value = data[-2]
-        #tmp = data[-3].split(';')
-        #path = tmp[0]
-        #for tag_value in tmp[1:]:
-        #    tag, value = parse_tag(tag_value)
+        timestamp = data[2]
+        value = data[1]
+        tmp = data[0].split(';')
+        path = tmp[0]
+        for tag_value in tmp[1:]:
+            tag, value = parse_tag(tag_value)
 
