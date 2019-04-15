@@ -20,10 +20,6 @@ jobs:
           environment:
             DOCKERIZE_VERSION: v0.3.0
 
-      - run:
-          name: tmp
-          command: sleep 120
-
 
       - run:
           name: generator
@@ -31,6 +27,10 @@ jobs:
             dockerize -wait tcp://localhost:2003 -timeout 4m
             bash stand/generator.sh
           background: true
+
+      - run:
+          name: tmp
+          command: sleep 120
 
       - store_artifacts:
           path: stand/snapshots
