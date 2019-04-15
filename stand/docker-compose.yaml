@@ -32,28 +32,3 @@ carbon-clickhouse:
       python /read_data.py
     links:
       - clickhouse
-
-grafana:
-    image: grafana/grafana
-    ports:
-      - "3000:3000"
-    volumes:
-      #- ./grafana/grafana.ini:/etc/grafana/grafana.ini
-      - ./grafana/dashboards:/var/lib/grafana/dashboards
-      - ./grafana/datasources:/etc/grafana/datasources
-      - ./grafana/provisioning:/etc/grafana/provisioning
-    environment:
-      - GF_INSTALL_PLUGINS=vertamedia-clickhouse-datasource
-    links:
-      - clickhouse
-
-grafana-key:
-    image: python:3.6-alpine
-    volumes:
-      - ./grafana-key:/grafana-key
-    entrypoint: |
-      sh -c '
-        ls
-        pip install requests && python /grafana-key/get_key.py && cat grafana-key/key.txt'
-    links:
-      - grafana
