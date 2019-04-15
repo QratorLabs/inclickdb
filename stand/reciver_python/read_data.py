@@ -23,6 +23,7 @@ if __name__ == "__main__":
 
         udata = data.decode("utf-8")
         data = udata.split()
+        print("Data: ",  udata, data)
         timestamp = data[-1]
         value = data[-2]
         tmp = data[-3].split(';')
@@ -30,4 +31,3 @@ if __name__ == "__main__":
         for tag_value in tmp[1:]:
             tag, value = parse_tag(tag_value)
 
-        print("Data: " + udata)
