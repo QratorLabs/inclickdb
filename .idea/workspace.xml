@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3906f1cf-40e6-4aa5-885f-17f0e0246918" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/stand/reciver_python/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stand/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/stand/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,8 +16,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stand/docker-compose.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="31" column="6" lean-forward="true" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+            <state relative-caret-position="166">
+              <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stand/reciver_python/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="33" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -93,9 +103,9 @@
         <option value="$PROJECT_DIR$/stand/grafana-key/get_key.py" />
         <option value="$PROJECT_DIR$/stand/image.sh" />
         <option value="$PROJECT_DIR$/stand/generator.sh" />
-        <option value="$PROJECT_DIR$/stand/reciver_python/Dockerfile" />
         <option value="$PROJECT_DIR$/.circleci/config.yml" />
         <option value="$PROJECT_DIR$/stand/reciver_python/read_data.py" />
+        <option value="$PROJECT_DIR$/stand/reciver_python/Dockerfile" />
         <option value="$PROJECT_DIR$/stand/docker-compose.yaml" />
       </list>
     </option>
@@ -316,13 +326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stand/reciver_python/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="5" selection-start-column="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stand/carbon-clickhouse.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -351,10 +354,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/stand/reciver_python/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="33" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stand/docker-compose.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="31" column="6" lean-forward="true" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+        <state relative-caret-position="166">
+          <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
         </state>
       </provider>
     </entry>

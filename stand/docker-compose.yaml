@@ -20,7 +20,7 @@ clickhouse-init:
       - clickhouse
 
 data-receiver:
-    image: python:3.6-alpine
+    build: reciver_python
     volumes:
       - "./reciver_python/read_data.py:/read_data.py"
     ports:
@@ -28,8 +28,6 @@ data-receiver:
       - "2003:2003/udp" # plain udp
       - "2004:2004" # pickle
       - "2006:2006" # prometheus remote write
-    entrypoint: |
-      pip install clickhouse_driver
-      python /read_data.py
+    entrypoint: python /read_data.py
     links:
       - clickhouse
