@@ -43,8 +43,8 @@ if __name__ == "__main__":
             (path, last_volume) VALUES\n\
             ( \"tytyt\", 31)')
             #client.execute('INSERT INTO tmp [(path, last_volume)] VALUES (' + path +', '+ value +')')'''
-        print(uu)
-        f.write(client.execute('SELECT * FROM tmp'))
+        #f.write(client.execute('SELECT * FROM tmp'))
+        f.write(1+9)
 
 
 
