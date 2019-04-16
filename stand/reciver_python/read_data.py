@@ -28,7 +28,7 @@ if __name__ == "__main__":
                 ( \"tytyt\", 31)')'''
     print(client.execute('SELECT * FROM tmp'))
     f = open('results', 'w')
-    for i in range(10):
+    for i in range(100):
     #while True:
         sock.listen(1)
         conn, addr = sock.accept()
