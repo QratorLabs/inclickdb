@@ -38,11 +38,11 @@ if __name__ == "__main__":
             path = tmp[0]
             for tag_value in tmp[1:]:
                 tag, value = parse_tag(tag_value)
-            client.execute('INSERT INTO tmp \n\
+        client.execute('INSERT INTO tmp \n\
             (path, last_volume) VALUES\n\
             ( \"tytyt\", 31)')
             #client.execute('INSERT INTO tmp [(path, last_volume)] VALUES (' + path +', '+ value +')')
-            f.write(client.execute('SELECT * FROM tmp'))
+        f.write(client.execute('SELECT * FROM tmp'))
 
 
 
