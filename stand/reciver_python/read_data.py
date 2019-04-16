@@ -22,6 +22,10 @@ if __name__ == "__main__":
     path String,\n\
     last_volume UInt32\n\
     ) ENGINE = Log;'))
+    client.execute('INSERT INTO tmp \n\
+                (path, last_volume) VALUES\n\
+                ( \"tytyt\", 31)')
+    print(client.execute('SELECT * FROM tmp'))
     f = open('results', 'w')
     #for i in range(100):
     while True:
