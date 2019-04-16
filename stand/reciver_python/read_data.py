@@ -52,9 +52,9 @@ if __name__ == "__main__":
         f.write('erere')
 
     time.sleep(30)
-    client.execute('INSERT INTO tmp \n\
+    print (client.execute('INSERT INTO tmp \n\
                         (path, last_volume) VALUES\n\
-                        ( \"tytyt\", 31)')
+                        ( \"tytyt\", 31)'))
 
 
 
