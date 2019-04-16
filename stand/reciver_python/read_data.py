@@ -50,10 +50,11 @@ if __name__ == "__main__":
             #client.execute('INSERT INTO tmp [(path, last_volume)] VALUES (' + path +', '+ value +')')'''
         #f.write(client.execute('SELECT * FROM tmp'))
         f.write('erere')
-    client.execute('INSERT INTO tmp \n\
-                    (path, last_volume) VALUES\n\
-                    ( \"tytyt\", 31)')
+
     time.sleep(30)
+    client.execute('INSERT INTO tmp \n\
+                        (path, last_volume) VALUES\n\
+                        ( \"tytyt\", 31)')
 
 
 
