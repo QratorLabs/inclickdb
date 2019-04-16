@@ -33,4 +33,4 @@ jobs:
           command: sleep 200
 
       - store_artifacts:
-          path: stand/snapshots
+          path: stand/reciver_python

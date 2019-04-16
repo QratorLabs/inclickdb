@@ -21,6 +21,7 @@ if __name__ == "__main__":
     path String,\n\
     last_volume UInt32\n\
     ) ENGINE = Log;'))
+    f = open('results', 'w')
     #for i in range(100):
     while True:
         sock.listen(1)
@@ -41,7 +42,7 @@ if __name__ == "__main__":
             (path, last_volume) VALUES\n\
             ( \"tytyt\", 31)')
             #client.execute('INSERT INTO tmp [(path, last_volume)] VALUES (' + path +', '+ value +')')
-            print(client.execute('SELECT * FROM tmp'))
+            f.write(client.execute('SELECT * FROM tmp'))
 
 
 
