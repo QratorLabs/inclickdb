@@ -32,7 +32,7 @@ if __name__ == "__main__":
         print("Data: ",  udata, data)
         if len(data) == 3:
             timestamp = data[2]
-            value = int(data[1])
+            value = data[1]
             tmp = data[0].split(';')
             path = tmp[0]
             for tag_value in tmp[1:]:
