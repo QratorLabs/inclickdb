@@ -17,9 +17,9 @@ def parse_tag(tag_value):
 if __name__ == "__main__":
 
     client = Client('clickhouse')
-    print(client.execute('CREATE TABLE minutes_tmp(\n\
-    symbol String,\n\
-    dt DateTime,\n\
+    print(client.execute('CREATE TABLE tmp(\n\
+    path String,\n\
+    dt timestamp,\n\
     last_volume UInt32\n\
     ) ENGINE = Log;'))
     #for i in range(100):
@@ -38,6 +38,8 @@ if __name__ == "__main__":
             path = tmp[0]
             for tag_value in tmp[1:]:
                 tag, value = parse_tag(tag_value)
+            client.execute('INSERT INTO tmp [(path, dt, last_volume)] VALUES (' + path +', '+timestamp+ ', '+ tmp+')')
+            print(client.execute('SELECT * FROM tmp'))
 
 
 
