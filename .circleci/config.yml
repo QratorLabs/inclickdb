@@ -28,6 +28,7 @@ jobs:
             bash stand/generator.sh
           background: true
 
+
       - run:
           name: tmp
           command: sleep 200
