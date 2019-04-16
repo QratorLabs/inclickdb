@@ -1,5 +1,6 @@
 import socket
 from clickhouse_driver.client import Client
+import time
 
 sock = socket.socket()
 PORT = 2003
@@ -27,8 +28,8 @@ if __name__ == "__main__":
                 ( \"tytyt\", 31)')
     print(client.execute('SELECT * FROM tmp'))
     f = open('results', 'w')
-    #for i in range(100):
-    while True:
+    for i in range(100):
+    #while True:
         sock.listen(1)
         conn, addr = sock.accept()
         data = conn.recv(100)
@@ -50,6 +51,7 @@ if __name__ == "__main__":
         #f.write(client.execute('SELECT * FROM tmp'))
         print(uu)
         f.write('erere')
+    time.sleep(30)
 
 
 
