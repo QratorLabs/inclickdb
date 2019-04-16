@@ -44,7 +44,7 @@ if __name__ == "__main__":
             ( \"tytyt\", 31)')
             #client.execute('INSERT INTO tmp [(path, last_volume)] VALUES (' + path +', '+ value +')')'''
         #f.write(client.execute('SELECT * FROM tmp'))
-        f.write(1+9)
+        f.write('erere')
 
 
 
