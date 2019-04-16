@@ -30,8 +30,12 @@ jobs:
 
 
       - run:
-          name: tmp
+          name: tmp1
           command: sleep 200
+
+      - run:
+          name: tmp2
+          command: cat stand/data/clickhouse/data
 
       - store_artifacts:
           path: stand/data/clickhouse/data
