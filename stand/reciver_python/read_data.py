@@ -56,6 +56,7 @@ if __name__ == "__main__":
                         (path, last_volume) VALUES\n\
                         ( \"tytyt\", 31)'))
     print(client.execute('SELECT * FROM tmp'))
+    print('aaaaaaaaaaaaaaaaaaaaaa')
 
 
 
