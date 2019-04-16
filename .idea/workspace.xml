@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3906f1cf-40e6-4aa5-885f-17f0e0246918" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/stand/reciver_python/insert.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stand/reciver_python/read_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/stand/reciver_python/read_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stand/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/stand/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stand/docker-compose.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="29" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="29" />
+            <state relative-caret-position="405">
+              <caret line="27" column="10" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -31,14 +32,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/stand/reciver_python/read_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="724">
-              <caret line="56" column="46" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
+            <state relative-caret-position="94">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="21" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/stand/reciver_python/insert.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="43" lean-forward="true" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -117,9 +127,10 @@
         <option value="$PROJECT_DIR$/stand/generator.sh" />
         <option value="$PROJECT_DIR$/stand/reciver_python/Dockerfile" />
         <option value="$PROJECT_DIR$/stand/reciver_python/results" />
-        <option value="$PROJECT_DIR$/stand/docker-compose.yaml" />
         <option value="$PROJECT_DIR$/.circleci/config.yml" />
         <option value="$PROJECT_DIR$/stand/reciver_python/read_data.py" />
+        <option value="$PROJECT_DIR$/stand/reciver_python/insert.py" />
+        <option value="$PROJECT_DIR$/stand/docker-compose.yaml" />
       </list>
     </option>
   </component>
@@ -168,12 +179,6 @@
               <item name="inclickdb" type="462c0819:PsiDirectoryNode" />
               <item name="stand" type="462c0819:PsiDirectoryNode" />
               <item name="reciver_python" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="inclickdb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="inclickdb" type="462c0819:PsiDirectoryNode" />
-              <item name="stand" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -340,31 +345,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/stand/docker-compose.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="29" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stand/reciver_python/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/stand/res/results">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="3" selection-start-column="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stand/image.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -389,13 +373,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/stand/reciver_python/insert.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="43" lean-forward="true" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stand/reciver_python/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stand/image.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="55" selection-start-line="3" selection-start-column="55" selection-end-line="3" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/stand/reciver_python/read_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="56" column="46" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
+        <state relative-caret-position="94">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="21" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stand/docker-compose.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="10" lean-forward="true" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
         </state>
       </provider>
     </entry>
