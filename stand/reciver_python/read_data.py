@@ -18,10 +18,10 @@ if __name__ == "__main__":
 
     client = Client('clickhouse')
     print('aaaaaaaaaaaaaaaaa')
-    print(client.execute('CREATE TABLE tmp(\n\
+    '''print(client.execute('CREATE TABLE tmp(\n\
     path String,\n\
     last_volume UInt32\n\
-    ) ENGINE = Log;'))
+    ) ENGINE = Log;'))'''
     f = open('results', 'w')
     #for i in range(100):
     while True:
@@ -39,6 +39,10 @@ if __name__ == "__main__":
             path = tmp[0]
             for tag_value in tmp[1:]:
                 tag, value = parse_tag(tag_value)
+            print(client.execute('CREATE TABLE tmp(\n\
+                path String,\n\
+                last_volume UInt32\n\
+                ) ENGINE = Log;'))
         '''client.execute('INSERT INTO tmp \n\
             (path, last_volume) VALUES\n\
             ( \"tytyt\", 31)')
