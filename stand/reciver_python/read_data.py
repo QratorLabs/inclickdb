@@ -17,6 +17,7 @@ def parse_tag(tag_value):
 if __name__ == "__main__":
 
     client = Client('clickhouse')
+    print('aaaaaaaaaaaaaaaaa')
     print(client.execute('CREATE TABLE tmp(\n\
     path String,\n\
     last_volume UInt32\n\
