@@ -31,7 +31,7 @@ jobs:
 
       - run:
           name: tmp
-          command: sleep 120
+          command: sleep 200
 
       - store_artifacts:
           path: stand/res/
