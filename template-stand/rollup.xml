@@ -1,0 +1,11 @@
+<yandex>
+    <graphite_rollup>
+        <default>
+            <function>avg</function>
+            <retention>
+                <age>300</age>
+                <precision>10</precision>
+            </retention>
+        </default>
+    </graphite_rollup>
+</yandex>
