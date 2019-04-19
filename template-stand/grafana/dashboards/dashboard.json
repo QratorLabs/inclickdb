@@ -1,0 +1,251 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1555710622528,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "ClickHouse",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "database": "default",
+          "dateColDataType": "Date",
+          "dateLoading": false,
+          "dateTimeColDataType": "Time",
+          "dateTimeType": "TIMESTAMP",
+          "datetimeLoading": false,
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "query": "SELECT \n$timeSeries as t, \navg(Value) \nFROM graphite \nALL INNER JOIN \n( \nSELECT Path \nFROM graphite_tagged \nWHERE \nTag1 = '$tag0' \nor Tag1 = '$tag1' \nGROUP BY (Path, Tags) \nHAVING count(Tag1) == 2 \n) USING  Path \nWHERE $timeFilter \nGROUP BY t \nORDER BY t",
+          "rawQuery": "SELECT  (intDiv(Time, 1) * 1) * 1000 as t,  avg(Value)  FROM graphite  ALL INNER JOIN  (  SELECT Path  FROM graphite_tagged  WHERE  Tag1 = 'cpu=0'  or Tag1 = 'metric=idle'  GROUP BY (Path, Tags)  HAVING count(Tag1) == 2  ) USING  Path  WHERE Date >= toDate(1555709828) AND Time >= 1555709828  GROUP BY t  ORDER BY t",
+          "refId": "A",
+          "round": "0s",
+          "table": "graphite",
+          "tableLoading": false
+        },
+        {
+          "database": "default",
+          "dateColDataType": "Date",
+          "dateLoading": false,
+          "dateTimeColDataType": "Time",
+          "dateTimeType": "TIMESTAMP",
+          "datetimeLoading": false,
+          "format": "time_series",
+          "hide": false,
+          "intervalFactor": 1,
+          "query": "SELECT \n$timeSeries as t, \navg(Value) \nFROM graphite \nALL INNER JOIN \n( \nSELECT Path \nFROM graphite_tagged \nWHERE \nTag1 = '$tag2' \nor Tag1 = '$tag1' \nGROUP BY (Path, Tags) \nHAVING count(Tag1) == 2 \n) USING  Path \nWHERE $timeFilter \nGROUP BY t \nORDER BY t",
+          "rawQuery": "SELECT  (intDiv(Time, 1) * 1) * 1000 as t,  avg(Value)  FROM graphite  ALL INNER JOIN  (  SELECT Path  FROM graphite_tagged  WHERE  Tag1 = 'cpu=1'  or Tag1 = 'metric=idle'  GROUP BY (Path, Tags)  HAVING count(Tag1) == 2  ) USING  Path  WHERE Date >= toDate(1555709828) AND Time >= 1555709828  GROUP BY t  ORDER BY t",
+          "refId": "B",
+          "round": "0s",
+          "table": "graphite",
+          "tableLoading": false
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Panel Title",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "schemaVersion": 18,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "cpu=0",
+          "value": "cpu=0"
+        },
+        "datasource": "ClickHouse",
+        "definition": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "tag0",
+        "options": [],
+        "query": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "metric=idle",
+          "value": "metric=idle"
+        },
+        "datasource": "ClickHouse",
+        "definition": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "tag1",
+        "options": [],
+        "query": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "cpu=1",
+          "value": "cpu=1"
+        },
+        "datasource": "ClickHouse",
+        "definition": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "tag2",
+        "options": [],
+        "query": "select distinct Tag1 from graphite_tagged where Tag1 not like '__name__%'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "dh",
+  "uid": "JE7rYbjmz",
+  "version": 2
+}
