@@ -8,17 +8,6 @@ clickhouse:
     - "./data/clickhouse/metadata:/var/lib/clickhouse/metadata"
     - "./data/clickhouse/logs:/var/log/clickhouse-server/"
 
-clickhouse-init:
-    image: yandex/clickhouse-server
-    volumes:
-      - "./init.sql:/init.sql"
-    entrypoint: |
-      bash -c '
-        sleep 5
-        export HOME=/var/lib/clickhouse/
-        cat /init.sql | clickhouse client --host clickhouse --multiquery'
-    links:
-      - clickhouse
 
 data-receiver:
     build: reciver_python
