@@ -31,7 +31,7 @@ jobs:
 
       - run:
           name: tmp1
-          command: sleep 200
+          command: sleep 60
 
       - run:
           name: tmp2
