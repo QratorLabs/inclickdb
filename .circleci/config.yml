@@ -35,7 +35,7 @@ jobs:
 
       - run:
           name: tmp2
-          command: ls stand/data/clickhouse/data/
+          command: cat stand/data/clickhouse/logs/clickhouse-server.log
 
       - store_artifacts:
-          path: stand/data/clickhouse/logs/
+          path: stand/data/clickhouse/
