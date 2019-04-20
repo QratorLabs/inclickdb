@@ -38,4 +38,4 @@ jobs:
           command: ls stand/data/clickhouse/data/
 
       - store_artifacts:
-          path: stand/data/clickhouse/data/events/
+          path: stand/data/clickhouse/logs/
