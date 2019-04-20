@@ -24,12 +24,10 @@ if __name__ == "__main__":
     path String,\n\
     last_volume UInt32\n\
     ) ENGINE = Log;'))
-    client.execute('INSERT INTO tmp \n\
-                (path, last_volume) VALUES\n\
-                ( \"tytyt\", 31)')
+
     print(client.execute('SELECT * FROM events.tmp'))
 
-    print(client.execute('INSERT INTO tmp \n\
+    print(client.execute('INSERT INTO events.tmp \n\
                         (path, last_volume) VALUES\n\
                         ( \"uuytyt\", 31)'))
     print(client.execute('SELECT * FROM events.tmp'))
