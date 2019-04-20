@@ -32,6 +32,7 @@ if __name__ == "__main__":
                         ( \"uuytyt\", 31)'))
     print(client.execute('SELECT * FROM events.tmp'))
     print('aaaaaaaaaaaaaaaaaaaaaa')
+    print(uu)
     time.sleep(30)
 
 
