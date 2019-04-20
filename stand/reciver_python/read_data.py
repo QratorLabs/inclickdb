@@ -19,7 +19,7 @@ if __name__ == "__main__":
 
     client = Client('clickhouse')
     print('aaaaaaaaaaaaaaaaa')
-    print(client.execute("CREATE DATABASE[IF NOT EXISTS] events"))
+    print(client.execute("CREATE DATABASE IF NOT EXISTS events"))
     print(client.execute("using events"))
     print(client.execute('CREATE TABLE events.tmp(\n\
     path String,\n\
