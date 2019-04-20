@@ -20,7 +20,6 @@ if __name__ == "__main__":
     client = Client('clickhouse')
     print('aaaaaaaaaaaaaaaaa')
     print(client.execute("CREATE DATABASE IF NOT EXISTS events"))
-    print(client.execute("using events"))
     print(client.execute('CREATE TABLE events.tmp(\n\
     path String,\n\
     last_volume UInt32\n\
@@ -49,7 +48,7 @@ if __name__ == "__main__":
         '''client.execute('INSERT INTO tmp \n\
             (path, last_volume) VALUES\n\
             ( \"tytyt\", 31)')
-            #client.execute('INSERT INTO tmp [(path, last_volume)] VALUES (' + path +', '+ value +')')'''
+            #client.execute('INSERT INTO tmp (path, last_volume) VALUES (' + path +', '+ value +')')'''
         #f.write(client.execute('SELECT * FROM tmp'))
         f.write('erere')
 
