@@ -19,14 +19,16 @@ if __name__ == "__main__":
 
     client = Client('clickhouse')
     print('aaaaaaaaaaaaaaaaa')
-    print(client.execute('CREATE TABLE tmp(\n\
+    print(client.execute("CREATE DATABASE[IF NOT EXISTS] events"))
+    print(client.execute("using events"))
+    print(client.execute('CREATE TABLE events.tmp(\n\
     path String,\n\
     last_volume UInt32\n\
     ) ENGINE = Log;'))
     '''client.execute('INSERT INTO tmp \n\
                 (path, last_volume) VALUES\n\
                 ( \"tytyt\", 31)')'''
-    print(client.execute('SELECT * FROM tmp'))
+    print(client.execute('SELECT * FROM events.tmp'))
     f = open('results', 'w')
     for i in range(100):
     #while True:
@@ -55,7 +57,7 @@ if __name__ == "__main__":
     '''print(client.execute('INSERT INTO tmp \n\
                         (path, last_volume) VALUES\n\
                         ( \"tytyt\", 31)'))'''
-    print(client.execute('SELECT * FROM tmp'))
+    print(client.execute('SELECT * FROM events.tmp'))
     print('aaaaaaaaaaaaaaaaaaaaaa')
     time.sleep(30)
 
