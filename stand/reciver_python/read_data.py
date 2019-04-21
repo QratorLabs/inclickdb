@@ -46,8 +46,8 @@ if __name__ == "__main__":
             path = tmp[0]
             for tag_value in tmp[1:]:
                 tag, value = parse_tag(tag_value)
-            print(client.execute('INSERT INTO events.tmp (timestmp, path, last_volume) VALUES',
-                                 [{'timestmp': i, 'path': path, 'last_volume': 1}]))
+            print(client.execute('INSERT INTO events.tmp  (timestmp, path, last_volume) VALUES',
+                                 [{'timestmp': i, 'path': path, 'last_volume': i}]))
 
     print(client.execute('SELECT * FROM events.tmp'))
     time.sleep(30)
