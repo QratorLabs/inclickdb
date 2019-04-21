@@ -41,7 +41,7 @@ if __name__ == "__main__":
                 Taglist.append(tag)
                 print(client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS' + tag + 'UInt32 AFTER last_volume'))
 
-            print(client.execute('INSERT INTO events.tmp ' + tags + ' VALUES', insert_data))
+            print(client.execute('INSERT INTO events.tmp (' + tags + ') VALUES', insert_data))
 
         print(client.execute('SELECT * FROM events.tmp'))
 
