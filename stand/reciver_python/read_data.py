@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
         insert_data, Tag_to_add, tags = parse_tagged_data(data)
 
-        if Tag_to_add != []:
+        if Tag_to_add != [] and Tag_to_add != None:
             for tag in Tag_to_add:
                 Taglist.append(tag)
                 print(client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS ' + tag + ' UInt32 AFTER last_volume'))
