@@ -51,7 +51,9 @@ if __name__ == "__main__":
                 tag, value = parse_tag(tag_value)
             print(client.execute('INSERT INTO events.tmp (timestmp, path, last_volume) VALUES',
                                  [{'timestmp': timestamp, 'path': data[0], 'last_volume':last_volume}]))
-
+    print(client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS tag UInt32 AFTER path'))
+    print(client.execute('INSERT INTO events.tmp (timestmp, path, tag, last_volume) VALUES',
+                         [{'timestmp': timestamp, 'path': data[0], 'tag':23, 'last_volume': last_volume}]))
     print(client.execute('SELECT * FROM events.tmp'))
     time.sleep(30)
 
