@@ -40,6 +40,6 @@ if __name__ == "__main__":
 
         if insert_data != None:
             print(insert_data, tags)
-            #print(client.execute('INSERT INTO events.tmp (' + tags + ') VALUES', insert_data))
+            print(client.execute('INSERT INTO events.tmp (' + tags + ') VALUES', [insert_data]))
 
         print(client.execute('SELECT * FROM events.tmp'))
