@@ -24,7 +24,7 @@ def init(table_name='events'):
             last_volume UInt32, \n \
             path String \n \
         ) ENGINE MergeTree() PARTITION BY timestmp ORDER BY timestmp SETTINGS index_granularity=8192;'))
-    return 'ok'
+    return 'created: events.tmp'
 
 if __name__ == "__main__":
-    init()
+    print(init())
