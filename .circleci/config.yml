@@ -22,20 +22,22 @@ jobs:
 
 
       - run:
-          name: generator
+          name: generator_1
           command: |
             dockerize -wait tcp://localhost:2003 -timeout 4m
             bash stand/generator.sh
           background: true
 
+      - run:
+          name: generator_2
+          command: |
+            dockerize -wait tcp://localhost:2003 -timeout 4m
+            bash stand/generator2.sh
+          background: true
 
       - run:
           name: tmp1
           command: sleep 60
 
-      - run:
-          name: tmp2
-          command: ls stand/data/clickhouse/logs/clickhouse-server.log
-
       - store_artifacts:
-          path: stand/data/clickhouse/
+          path: stand/res

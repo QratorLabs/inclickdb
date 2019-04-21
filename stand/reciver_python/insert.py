@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # connection to clickhouse%
     client = Client('clickhouse')
 
-    for i in range(10):
+    for i in range(100):
 
         sock.listen(1)
         conn, addr = sock.accept()
@@ -23,10 +23,9 @@ if __name__ == "__main__":
         if Tag_to_add != [] and Tag_to_add != None:
             for tag in Tag_to_add:
                 Taglist.append(tag)
-                print(client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS ' + tag + ' UInt32 AFTER path'))
+                (client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS ' + tag + ' UInt32 AFTER path'))
 
         if insert_data != None:
-            print(insert_data, tags)
-            print(client.execute('INSERT INTO events.tmp (' + tags + ') VALUES', [insert_data]))
+            (client.execute('INSERT INTO events.tmp (' + tags + ') VALUES', [insert_data]))
 
-        print(client.execute('SELECT * FROM events.tmp'))
+    print(client.execute('SELECT * FROM events.tmp'))
