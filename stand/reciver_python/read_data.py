@@ -33,8 +33,9 @@ if __name__ == "__main__":
 
 
     for i in range(10):
-        conn, addr = sock.accept()
+
         sock.listen(1)
+        conn, addr = sock.accept()
         data = conn.recv(100)
         udata = data.decode("utf-8")
         data = udata.split()
