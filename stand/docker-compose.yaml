@@ -16,6 +16,7 @@ data-receiver:
       - "./reciver_python/read_data.py:/read_data.py"
       - "./res/results:/results"
       - "./reciver_python/insert.py:/insert.py"
+      - "./reciver_python/Parser.py:/Parser.py"
     ports:
       - "2003:2003" # plain tcp
       - "2003:2003/udp" # plain udp
