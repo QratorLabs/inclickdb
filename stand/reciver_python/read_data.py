@@ -27,9 +27,7 @@ if __name__ == "__main__":
             timestmp Date \n \
             path String, \n \
             last_volume UInt32 \n \
-        ) ENGINE = MergeTree() \n \
-        PARTITION BY toYYYYMM(timestmp) \n \
-        ORDER BY timestmp \n  ;'))
+        ) ENGINE = MergeTree(timestmp) ;'))
 
     print(client.execute('SELECT * FROM events.tmp'))
 
