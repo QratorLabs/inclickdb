@@ -20,14 +20,17 @@ if __name__ == "__main__":
     client = Client('clickhouse')
     print('aaaaaaaaaaaaaaaaa')
     print(client.execute("CREATE DATABASE IF NOT EXISTS events"))
-    print(client.execute('CREATE TABLE events.tmp(\n\
-    path String,\n\
-    last_volume UInt32\n\
-    ) ENGINE = Log;'))
+    print(client.execute(
+        'CREATE TABLE IF NOT EXISTS events.tmp(\n \
+            timestmp UInt32, \n \
+            path String, \n \
+            last_volume UInt32 \n \
+        ) ENGINE MergeTree() PARTITION BY timestmp ORDER BY timestmp SETTINGS index_granularity=8192;'))
 
     print(client.execute('SELECT * FROM events.tmp'))
 
-    print(client.execute('INSERT INTO events.tmp (path, last_volume) VALUES', [{'path': "uuytyt", 'last_volume': 31}]))
+    print(client.execute('INSERT INTO events.tmp (timestmp, path, last_volume) VALUES',
+                         [{'timestmp': 1, 'path': "uuytyt", 'last_volume': 31}]))
     print(client.execute('SELECT * FROM events.tmp'))
     print('aaaaaaaaaaaaaaaaaaaaaa')
     time.sleep(30)
