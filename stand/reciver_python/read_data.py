@@ -41,13 +41,14 @@ if __name__ == "__main__":
         print("Data: ",  data)
         if len(data) == 3:
             timestamp = int(data[2])
-            value = int(data[1])
+            last_volume = int(data[1])
             tmp = data[0].split(';')
+
             path = tmp[0]
             for tag_value in tmp[1:]:
                 tag, value = parse_tag(tag_value)
             print(client.execute('INSERT INTO events.tmp  (timestmp, path, last_volume) VALUES',
-                                 [{'timestmp': i, 'path': path, 'last_volume': value}]))
+                                 [{'timestmp': i, 'path': path, 'last_volume': last_volume}]))
 
     print(client.execute('SELECT * FROM events.tmp'))
     time.sleep(30)
