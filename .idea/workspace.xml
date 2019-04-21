@@ -42,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/stand/reciver_python/read_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+            <state relative-caret-position="205">
+              <caret line="29" column="95" selection-start-line="29" selection-start-column="78" selection-end-line="29" selection-end-column="95" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -434,8 +434,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/stand/reciver_python/read_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
+        <state relative-caret-position="205">
+          <caret line="29" column="95" selection-start-line="29" selection-start-column="78" selection-end-line="29" selection-end-column="95" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

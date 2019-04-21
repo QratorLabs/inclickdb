@@ -40,7 +40,7 @@ if __name__ == "__main__":
         data = udata.split()
         print("Data: ",  data)
         if len(data) == 3:
-            timestamp = data[2]
+            timestamp = int(data[2])
             value = int(data[1])
             tmp = data[0].split(';')
             path = tmp[0]
