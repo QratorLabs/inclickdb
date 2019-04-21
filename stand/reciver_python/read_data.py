@@ -2,18 +2,12 @@ import socket
 from clickhouse_driver.client import Client
 import time
 
+from stand.reciver_python.Parser import parse_tagged_data
+
 sock = socket.socket()
 PORT = 2003
 sock.bind(("", PORT))
-taglist = []
-
-def parse_tag(tag_value):
-    tag = tag_value.split('=')[0]
-    value = float(tag_value.split('=')[1])
-    if tag not in taglist:
-        taglist.append(tag)
-    return tag, value
-
+Taglist = []
 
 if __name__ == "__main__":
 
@@ -31,7 +25,6 @@ if __name__ == "__main__":
 
     print(client.execute('SELECT * FROM events.tmp'))
 
-
     for i in range(10):
 
         sock.listen(1)
@@ -39,23 +32,37 @@ if __name__ == "__main__":
         data = conn.recv(100)
         udata = data.decode("utf-8")
         data = udata.split()
-        print("Data: ",  data)
-        if len(data) == 3:
-            timestamp = int(data[2])
-            last_volume = int(data[1])
-            tmp = data[0].split(';')
+        print("Data: ", data)
 
-            path = tmp[0]
+        insert_data, Tag_to_add, tags = parse_tagged_data(data)
 
-            for tag_value in tmp[1:]:
-                tag, value = parse_tag(tag_value)
-            print(client.execute('INSERT INTO events.tmp (timestmp, path, last_volume) VALUES',
-                                 [{'timestmp': timestamp, 'path': data[0], 'last_volume':last_volume}]))
-    print(client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS tag UInt32 AFTER path'))
-    print(client.execute('INSERT INTO events.tmp (timestmp, path, tag, last_volume) VALUES',
-                         [{'timestmp': timestamp, 'path': data[0], 'tag':23, 'last_volume': last_volume}]))
-    print(client.execute('SELECT * FROM events.tmp'))
-    time.sleep(30)
+        if Tag_to_add != []:
+            for tag in Tag_to_add:
+                Taglist.append(tag)
+                print(client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS' + tag + 'UInt32 AFTER last_volume'))
+
+            print(client.execute('INSERT INTO events.tmp ' + tags + ' VALUES', insert_data))
+
+        print(client.execute('SELECT * FROM events.tmp'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
