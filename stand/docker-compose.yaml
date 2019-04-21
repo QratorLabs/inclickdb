@@ -13,15 +13,13 @@ clickhouse:
 data-receiver:
     build: reciver_python
     volumes:
-      - "./reciver_python/read_data.py:/read_data.py"
       - "./res/results:/results"
-      - "./reciver_python/insert.py:/insert.py"
-      - "./reciver_python/Parser.py:/Parser.py"
+      - "./reciver_python/ : /"
     ports:
       - "2003:2003" # plain tcp
       - "2003:2003/udp" # plain udp
       - "2004:2004" # pickle
       - "2006:2006" # prometheus remote write
-    entrypoint: python /read_data.py
+    entrypoint: python /insert.py
     links:
       - clickhouse

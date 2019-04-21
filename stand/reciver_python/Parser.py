@@ -1,5 +1,16 @@
 
+
 def parse_tagged_data(data, Taglist=[]):
+
+    '''
+    :param data: string form of mectic
+    :param Taglist: list of column in table
+    :return:
+        insert_data - dict of data to insert into table;
+        Tag_to_add -  tags that are not in Taglist;
+        tags - tags for insert query
+    to_do: add type check
+    '''
 
     if type(data) != str:
         data = data.decode("utf-8")
@@ -28,17 +39,6 @@ def parse_tagged_data(data, Taglist=[]):
             Tag_to_add.append(tag)
 
     return insert_data, Tag_to_add, tags
-
-
-
-
-if __name__ == "__main__":
-    data = 'my.awesome.path1;b=123;a=1;c=5 71 1555849096'
-    ins, T, tags = (parse_tagged_data(data, []))
-    if ins!= None :
-        print(ins, T)
-        print(tags)
-
 
 
 
