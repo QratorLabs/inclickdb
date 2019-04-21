@@ -22,10 +22,14 @@ if __name__ == "__main__":
 
     # creating database and table
     print(client.execute("CREATE DATABASE IF NOT EXISTS events"))
-    print(client.execute('CREATE TABLE events.tmp(\n\
-    path String,\n\
-    last_volume UInt32\n\
-    ) ENGINE = MergeTree();'))
+    print(client.execute(
+        'CREATE TABLE IF NOT EXISTS events.tmp(\n \
+            timestmp Date \n \
+            path String, \n \
+            last_volume UInt32 \n \
+        ) ENGINE = MergeTree() \n \
+        PARTITION BY toYYYYMM(timestmp) \n \
+        ORDER BY timestmp \n  ;'))
 
     print(client.execute('SELECT * FROM events.tmp'))
 
@@ -44,7 +48,8 @@ if __name__ == "__main__":
             path = tmp[0]
             for tag_value in tmp[1:]:
                 tag, value = parse_tag(tag_value)
-            print(client.execute('INSERT INTO events.tmp (path, last_volume) VALUES', [{'path': path, 'last_volume': value}]))
+            print(client.execute('INSERT INTO events.tmp (timestmp, path, last_volume) VALUES',
+                                 [{'timestmp': timestamp, 'path': path, 'last_volume': value}]))
 
     print(client.execute('SELECT * FROM events.tmp'))
     time.sleep(30)
