@@ -24,7 +24,7 @@ if __name__ == "__main__":
     print(client.execute("CREATE DATABASE IF NOT EXISTS events"))
     print(client.execute(
         'CREATE TABLE IF NOT EXISTS events.tmp(\n \
-            timestmp Date \n \
+            timestmp Date, \n \
             path String, \n \
             last_volume UInt32 \n \
         ) ENGINE = MergeTree(timestmp) ;'))
