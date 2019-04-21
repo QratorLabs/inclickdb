@@ -26,4 +26,5 @@ def init(table_name='events'):
         ) ENGINE MergeTree() PARTITION BY timestmp ORDER BY timestmp SETTINGS index_granularity=8192;'))
     return 'ok'
 
-
+if __name__ == "__main__":
+    init()
