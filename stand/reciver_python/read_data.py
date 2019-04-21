@@ -30,8 +30,6 @@ if __name__ == "__main__":
         sock.listen(1)
         conn, addr = sock.accept()
         data = conn.recv(100)
-        udata = data.decode("utf-8")
-        data = udata.split()
         print("Data: ", data)
 
         insert_data, Tag_to_add, tags = parse_tagged_data(data)
