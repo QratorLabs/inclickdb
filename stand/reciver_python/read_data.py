@@ -31,11 +31,10 @@ if __name__ == "__main__":
 
     print(client.execute('SELECT * FROM events.tmp'))
 
+    conn, addr = sock.accept()
     for i in range(10):
         sock.listen(1)
-        conn, addr = sock.accept()
         data = conn.recv(100)
-
         udata = data.decode("utf-8")
         data = udata.split()
         print("Data: ",  data)
@@ -49,7 +48,7 @@ if __name__ == "__main__":
             for tag_value in tmp[1:]:
                 tag, value = parse_tag(tag_value)
             print(client.execute('INSERT INTO events.tmp (timestmp, path, last_volume) VALUES',
-                                 [{'timestmp': timestamp, 'path': "uuytyt", 'last_volume': 31}]))
+                                 [{'timestmp': timestamp, 'path': data[0], 'last_volume': i}]))
 
     print(client.execute('SELECT * FROM events.tmp'))
     time.sleep(30)
