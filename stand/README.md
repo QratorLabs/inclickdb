@@ -1,22 +1,18 @@
-### Graphite -> Clickhouse stand
-
+### Store metrics  
 #### What is it?
 
 This stand does the following:
 - Generates some graphite data
-- Sends it to [graphite-clickhouse](https://github.com/lomik/graphite-clickhouse)
-- Via graphite-clickhouse stores it to Clickhouse database
-- Takes snapshot of the database via grafana-api
-
-Thanks to [preconfigured docker-compose](https://github.com/lomik/graphite-clickhouse-tldr), that was used as a start point.
+- parses it
+- Sends it to [clickhouse]
 
 #### What should I do?
 
 Do the following steps:
 - `docker-compose up`
-- `bash generator.sh` (for generating data)
-- `bash image.sh` (for taking snapshot)
+- `bash generator.sh`, `bash generator2.sh` (for generating data)
 
-You can look at the result in the `snapshots` folder.
+#### TODO
 
-Also, you can access Grafana via opening [localhost:3000](http://localhost:3000) in your browser. Login/password: admin/admin.
+- Add .sh with cron
+- Add grafana
