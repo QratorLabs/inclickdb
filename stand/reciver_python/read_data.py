@@ -24,10 +24,10 @@ if __name__ == "__main__":
     print(client.execute("CREATE DATABASE IF NOT EXISTS events"))
     print(client.execute(
         'CREATE TABLE IF NOT EXISTS events.tmp(\n \
-            timestmp Date, \n \
+            timestmp UInt32, \n \
             path String, \n \
             last_volume UInt32 \n \
-        ) ENGINE = MergeTree(timestmp, timestmp, 8192) ;'))
+        ) ENGINE MergeTree() PARTITION BY timestmp ORDER BY timestmp SETTINGS index_granularity=8192;'))
 
     print(client.execute('SELECT * FROM events.tmp'))
 
