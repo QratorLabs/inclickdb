@@ -14,7 +14,7 @@ data-receiver:
     build: reciver_python
     volumes:
       - "./res/results:/results"
-      - "./reciver_python/:/"
+      - "./reciver_python/:/reciver_python"
     ports:
       - "2003:2003" # plain tcp
       - "2003:2003/udp" # plain udp

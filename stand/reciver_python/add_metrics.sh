@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-python /init.py
-python /insert.py
+cd reciver_python
+python init.py
+python insert.py
