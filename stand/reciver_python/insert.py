@@ -30,7 +30,6 @@ if __name__ == "__main__":
     print(client.execute('INSERT INTO events.tmp (path, last_volume) VALUES', [{'path': "uuytyt", 'last_volume': 31}]))
     print(client.execute('SELECT * FROM events.tmp'))
     print('aaaaaaaaaaaaaaaaaaaaaa')
-    print(uu)
     time.sleep(30)
 
 
