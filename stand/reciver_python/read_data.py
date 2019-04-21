@@ -19,8 +19,8 @@ if __name__ == "__main__":
     print(client.execute(
         'CREATE TABLE IF NOT EXISTS events.tmp(\n \
             timestmp UInt32, \n \
-            path String, \n \
-            last_volume UInt32 \n \
+            last_volume UInt32, \n \
+            path String \n \
         ) ENGINE MergeTree() PARTITION BY timestmp ORDER BY timestmp SETTINGS index_granularity=8192;'))
 
     print(client.execute('SELECT * FROM events.tmp'))
@@ -36,10 +36,10 @@ if __name__ == "__main__":
         if Tag_to_add != [] and Tag_to_add != None:
             for tag in Tag_to_add:
                 Taglist.append(tag)
-                #print(client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS ' + tag + ' UInt32 AFTER last_volume'))
+                print(client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS ' + tag + ' UInt32 AFTER path'))
 
         if insert_data != None:
-            print(insert_data)
+            print(insert_data, tags)
             #print(client.execute('INSERT INTO events.tmp (' + tags + ') VALUES', insert_data))
 
         print(client.execute('SELECT * FROM events.tmp'))
