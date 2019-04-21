@@ -19,7 +19,7 @@ def parse_tagged_data(data, Taglist=[]):
     for tag_value in data:
 
         tag = tag_value.split('=')[0]
-        value = tag_value.split('=')[1]
+        value = int(tag_value.split('=')[1])
 
         tags += (', ' + tag)
 
