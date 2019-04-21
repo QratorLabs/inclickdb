@@ -18,7 +18,7 @@ def parse_tag(tag_value):
 if __name__ == "__main__":
 
     client = Client('clickhouse')
-    print('aaaaaaaaaaaaaaaaa')
+    print('aaaaaaaaaaaaaaaaabbbbbbbb')
     print(client.execute("CREATE DATABASE IF NOT EXISTS events"))
     print(client.execute(
         'CREATE TABLE IF NOT EXISTS events.tmp(\n \
