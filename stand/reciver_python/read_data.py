@@ -2,7 +2,7 @@ import socket
 from clickhouse_driver.client import Client
 import time
 
-from stand.reciver_python.Parser import parse_tagged_data
+from reciver_python.Parser import parse_tagged_data
 
 sock = socket.socket()
 PORT = 2003
