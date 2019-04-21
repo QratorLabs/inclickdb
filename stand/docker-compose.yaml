@@ -7,7 +7,7 @@ clickhouse:
     - "./data/clickhouse/data:/var/lib/clickhouse/data"
     - "./data/clickhouse/metadata:/var/lib/clickhouse/metadata"
     - "./data/clickhouse/logs/clickhouse-server.log:/var/log/clickhouse-server/clickhouse-server.log"
-  entrypoint: chmod o+r stand/data/clickhouse/logs/clickhouse-server.log
+  #entrypoint: chmod o+r stand/data/clickhouse/logs/clickhouse-server.log
 
 
 data-receiver:

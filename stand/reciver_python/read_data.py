@@ -25,7 +25,7 @@ if __name__ == "__main__":
     print(client.execute('CREATE TABLE events.tmp(\n\
     path String,\n\
     last_volume UInt32\n\
-    ) ENGINE = Log;'))
+    ) ENGINE = MergeTree();'))
 
     print(client.execute('SELECT * FROM events.tmp'))
 
