@@ -30,8 +30,12 @@ jobs:
 
 
       - run:
+          name: tmp1
+          command: sleep 60
+
+      - run:
           name: tmp2
-          command: ls stand/data/clickhouse/logs/clickhouse-server.log
+          command: cat stand/data/clickhouse/logs/clickhouse-server.log
 
       - store_artifacts:
           path: stand/data/clickhouse/
