@@ -27,7 +27,7 @@ if __name__ == "__main__":
             timestmp Date, \n \
             path String, \n \
             last_volume UInt32 \n \
-        ) ENGINE = MergeTree(timestmp) ;'))
+        ) ENGINE = MergeTree(timestmp, (timestmp, last_volume), 8192) ;'))
 
     print(client.execute('SELECT * FROM events.tmp'))
 
