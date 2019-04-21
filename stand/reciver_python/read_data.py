@@ -30,37 +30,17 @@ if __name__ == "__main__":
         sock.listen(1)
         conn, addr = sock.accept()
         data = conn.recv(100)
-        print("Data: ", data)
 
         insert_data, Tag_to_add, tags = parse_tagged_data(data)
 
         if Tag_to_add != [] and Tag_to_add != None:
             for tag in Tag_to_add:
                 Taglist.append(tag)
-                print(client.execute('ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS ' + tag + ' UInt32 AFTER last_volume'))
+                print(client.execute(
+                    'ALTER TABLE events.tmp ADD COLUMN IF NOT EXISTS ' + tag + ' UInt32 AFTER last_volume'))
 
+        if insert_data != None:
+            print(insert_data)
             print(client.execute('INSERT INTO events.tmp (' + tags + ') VALUES', insert_data))
 
         print(client.execute('SELECT * FROM events.tmp'))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
