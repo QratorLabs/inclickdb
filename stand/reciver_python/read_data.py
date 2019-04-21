@@ -31,8 +31,9 @@ if __name__ == "__main__":
 
     print(client.execute('SELECT * FROM events.tmp'))
 
-    conn, addr = sock.accept()
+
     for i in range(10):
+        conn, addr = sock.accept()
         sock.listen(1)
         data = conn.recv(100)
         udata = data.decode("utf-8")
