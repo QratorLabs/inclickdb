@@ -1,6 +1,7 @@
 version: 2
 jobs:
-  build:
+  build_demo_1:
+
     machine: true
 
     steps:
@@ -16,7 +17,10 @@ jobs:
 
       - run:
           name: install dockerize
-          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          command: |
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+            sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+            rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.3.0
 
@@ -40,3 +44,49 @@ jobs:
 
       - store_artifacts:
           path: stand/snapshots
+
+  build_demo_2:
+
+    machine: true
+
+    steps:
+
+      - checkout
+
+      - run:
+          name: compose_to_be_removed
+          command: |
+            cd demo2
+            docker-compose up
+          background: true
+
+      - run:
+          name: install dockerize
+          command: |
+            wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+            sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+            rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+          environment:
+            DOCKERIZE_VERSION: v0.3.0
+
+
+      - run:
+          name: generator_1
+          command: |
+            dockerize -wait tcp://localhost:2003 -timeout 4m
+            bash demo2/generator.sh
+          background: true
+
+      - run:
+          name: generator_2
+          command: |
+            dockerize -wait tcp://localhost:2003 -timeout 4m
+            bash demo2/generator2.sh
+          background: true
+
+      - run:
+          name: tmp1
+          command: sleep 60
+
+
+
