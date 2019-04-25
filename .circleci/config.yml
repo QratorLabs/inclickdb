@@ -1,11 +1,7 @@
-version: 2.1
-workflows:
-  version: 2
-  demo_1:
-    jobs:
+version: 2
+jobs:
 
-      build:
-
+  build1:
         machine: true
 
         steps:
@@ -48,10 +44,8 @@ workflows:
 
           - store_artifacts:
               path: stand/snapshots
-  demo_2:
-    jobs:
 
-      build:
+  build2:
 
         machine: true
 
@@ -95,4 +89,11 @@ workflows:
               command: sleep 60
 
 
-
+workflows:
+  version: 2
+  demo1:
+    jobs:
+      - build1
+  demo2:
+    jobs:
+      - build2
