@@ -1,7 +1,7 @@
 version: 2
 jobs:
 
-  build1:
+  build_demo_1:
         machine: true
 
         steps:
@@ -45,7 +45,7 @@ jobs:
           - store_artifacts:
               path: stand/snapshots
 
-  build2:
+  build_demo_2:
 
         machine: true
 
@@ -77,6 +77,7 @@ jobs:
                 bash demo2/generator.sh
               background: true
 
+
           - run:
               name: generator_2
               command: |
@@ -94,6 +95,7 @@ workflows:
   demo1:
     jobs:
       - build1
+
   demo2:
     jobs:
       - build2
