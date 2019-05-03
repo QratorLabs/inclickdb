@@ -9,7 +9,7 @@ Taglist = []
 
 if __name__ == "__main__":
 
-    # connection to clickhouse%
+    # connection to clickhouse
     client = Client('clickhouse')
 
     for i in range(100):
