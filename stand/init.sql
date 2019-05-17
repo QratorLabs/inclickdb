@@ -1,8 +1,8 @@
-CREATE TABLE IF NOT EXISTS default.graphite_reverse  (
-  Path String,
-  Value Float64,
-  Time UInt32,
-  Date Date,
+CREATE TABLE IF NOT EXISTS default.graphite_reverse  ( 
+  Path String,  
+  Value Float64,  
+  Time UInt32,  
+  Date Date,  
   Timestamp UInt32
 ) ENGINE = GraphiteMergeTree(Date, (Path, Time), 8192, 'graphite_rollup');
 
@@ -31,10 +31,10 @@ CREATE TABLE IF NOT EXISTS default.graphite_tagged (
   Deleted UInt8
 ) ENGINE = ReplacingMergeTree(Date, (Tag1, Path, Date), 1024, Version);
 
-CREATE TABLE IF NOT EXISTS default.graphite (
-  Path String,
-  Value Float64,
-  Time UInt32,
-  Date Date,
+CREATE TABLE IF NOT EXISTS default.graphite ( 
+  Path String,  
+  Value Float64,  
+  Time UInt32,  
+  Date Date,  
   Timestamp UInt32
 ) ENGINE = GraphiteMergeTree(Date, (Path, Time), 8192, 'graphite_rollup');
