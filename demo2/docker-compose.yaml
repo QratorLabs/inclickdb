@@ -1,0 +1,26 @@
+clickhouse:
+  image: yandex/clickhouse-server
+  ports:
+    - "8123:8123"
+  volumes:
+    - "./data/clickhouse/data:/var/lib/clickhouse/data"
+    - "./data/clickhouse/metadata:/var/lib/clickhouse/metadata"
+
+
+data-receiver:
+    build: reciever_python
+    volumes:
+      - "./reciever_python/:/reciever_python"
+    ports:
+      - "2003:2003" # plain tcp
+      - "2003:2003/udp" # plain udp
+      - "2004:2004" # pickle
+      - "2006:2006" # prometheus remote write
+<<<<<<< HEAD
+    entrypoint: sh add_metrics.sh
+=======
+    entrypoint: sh /reciever_python/add_metrics.sh
+>>>>>>> ab66b9d... -
+    links:
+      - clickhouse
+
