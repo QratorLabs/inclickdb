@@ -1,100 +1,85 @@
 version: 2
 jobs:
 
-  build_demo_1:
-        machine: true
+  build_demo_0:
+
+    docker:
+      - image: circleci/python:3.7.0
+
+    steps:
+
+      - checkout
+      - setup_remote_docker
+
+
+      - run:
+          name: compose
+          command: |
+            cd stand
+            docker-compose up
+          background: true
+
+      - run:
+          name: generator
+          command:  |
+            docker build -t generator ./Generator
+            docker run --network container:stand_clickhouse_1 generator
+
+          background: true
+
+      - run:
+          name: image
+          command:  |
+            docker build -t image ./Image
+            docker run --network container:stand_grafana_1: image
+
+      - run:
+          name: copy image
+          command:  |
+            docker cp image:/snapshots/output.png stand/snapshots/output.png
+
+
+      - store_artifacts:
+          path: stand/snapshots
+
+
+
+
+  build_demo_2:
+
+        docker:
+           - image: circleci/python:3.7.0
 
         steps:
 
           - checkout
+          - setup_remote_docker
 
           - run:
-              name: compose_to_be_removed
+              name: compose
               command: |
-                cd stand
+                cd demo2
+                ls
                 docker-compose up
               background: true
-
-          - run:
-              name: install dockerize
-              command: |
-                wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-                sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-                rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-              environment:
-                DOCKERIZE_VERSION: v0.3.0
 
 
           - run:
               name: generator
-              command: |
-                dockerize -wait tcp://localhost:2003 -timeout 4m
-                bash stand/generator.sh
-              background: true
-
-          - run:
-              name: image
-              command: |
-                dockerize -wait tcp://localhost:2003 -timeout 4m
-                dockerize -wait tcp://localhost:3000 -timeout 4m
-                sleep 120
-                cd stand
-                bash image.sh
-
-
-          - store_artifacts:
-              path: stand/snapshots
-
-  build_demo_2:
-
-        machine: true
-
-        steps:
-
-          - checkout
-
-          - run:
-              name: compose_to_be_removed
-              command: |
-                cd demo2
-                docker-compose up
-              background: true
-
-          - run:
-              name: install dockerize
-              command: |
-                wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-                sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-                rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-              environment:
-                DOCKERIZE_VERSION: v0.3.0
-
-
-          - run:
-              name: generator_1
-              command: |
-                dockerize -wait tcp://localhost:2003 -timeout 4m
-                bash demo2/generator.sh
-              background: true
-
-
-          - run:
-              name: generator_2
-              command: |
-                dockerize -wait tcp://localhost:2003 -timeout 4m
-                bash demo2/generator2.sh
-              background: true
-
-          - run:
-              name: tmp1
-              command: sleep 60
+              command:  |
+                docker build -t generator ./Generator
+                docker ps
+                docker run --network container:demo2_data-receiver_1 generator
 
 
 workflows:
   version: 2
-  demo1:
+  demo0:
     jobs:
-      - build_demo_1
+      - build_demo_0
+#  demo1:
+#    jobs:
+#      - build_demo_1
   demo2:
     jobs:
       - build_demo_2
