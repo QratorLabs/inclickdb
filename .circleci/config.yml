@@ -43,7 +43,46 @@ jobs:
           path: stand/snapshots
 
 
+  build_demo_1:
 
+    docker:
+      - image: circleci/python:3.7.0
+
+    steps:
+
+      - checkout
+      - setup_remote_docker
+
+
+      - run:
+          name: compose
+          command: |
+            cd demo
+            docker-compose up
+          background: true
+
+      - run:
+          name: generator
+          command:  |
+            docker build -t generator ./Generator
+            docker run --network container:stand_clickhouse_1 generator
+
+          background: true
+
+      - run:
+          name: image
+          command:  |
+            docker build -t image ./Image
+            docker run --network container:stand_grafana_1: image
+
+      - run:
+          name: copy image
+          command:  |
+            docker cp image:/snapshots/output.png stand/snapshots/output.png
+
+
+      - store_artifacts:
+          path: stand/snapshots
 
   build_demo_2:
 
@@ -77,9 +116,9 @@ workflows:
   demo0:
     jobs:
       - build_demo_0
-#  demo1:
-#    jobs:
-#      - build_demo_1
+  demo1:
+    jobs:
+      - build_demo_1
   demo2:
     jobs:
       - build_demo_2
