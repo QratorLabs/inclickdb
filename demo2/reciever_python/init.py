@@ -1,4 +1,3 @@
-import socket
 from clickhouse_driver.client import Client
 
 
@@ -11,9 +10,6 @@ def init(table_name='events'):
     """
 
     # connection to clickhous
-    sock = socket.socket()
-    PORT = 2003
-    sock.bind(("", PORT))
     client = Client('clickhouse')
 
     # creating database and table
@@ -23,7 +19,8 @@ def init(table_name='events'):
             timestmp UInt32, \n \
             last_volume UInt32, \n \
             path String \n \
-        ) ENGINE MergeTree() PARTITION BY timestmp ORDER BY timestmp SETTINGS index_granularity=8192;'))
+        ) ENGINE MergeTree() PARTITION BY\
+         timestmp ORDER BY timestmp SETTINGS index_granularity=8192;'))
     return 'created: events.tmp'
 
 
