@@ -1,0 +1,81 @@
+version: 2
+jobs:
+
+  build_demo_1:
+
+    docker:
+      - image: circleci/python:3.7.0
+
+    steps:
+
+      - checkout
+      - setup_remote_docker
+
+      - run:
+          name: compose
+          command: |
+            cd demo
+            docker-compose up
+          background: true
+
+      - run:
+          name: generator
+          command:  |
+            docker build -t generator ./Generator
+            docker run --network container:demo_clickhouse_1 generator
+          background: true
+
+      - run:
+          name: screenshot
+          command:  |
+            docker build -t screenshot ./Screenshot
+            docker run --network container:demo_grafana_1: screenshot
+
+      - run:
+          name: copy screenshot
+          command:  |
+            docker cp screenshot:/snapshots/output.png demo/snapshots/output.png
+
+      - store_artifacts:
+          path: demo/snapshots
+
+
+  build_demo_2:
+
+        docker:
+           - image: circleci/python:3.7.0
+
+        steps:
+
+          - checkout
+          - setup_remote_docker
+
+          - run:
+              name: compose
+              command: |
+                cd demo2
+                ls
+                docker-compose up
+              background: true
+
+          - run:
+              name: generator
+              command:  |
+                docker build -t generator ./Generator
+                docker ps
+                docker run --network container:demo2_data-receiver_1 generator
+
+workflows:
+  version: 2
+
+  demo0:
+    jobs:
+      - build_demo_0
+
+  demo1:
+    jobs:
+      - build_demo_1
+
+  demo2:
+    jobs:
+      - build_demo_2

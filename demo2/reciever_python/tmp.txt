@@ -1,0 +1,2 @@
+*.cgroups.*.cpu.*                   host.measurement.cgroup.measurement.field
+*.*.path.*
