@@ -12,7 +12,7 @@ if __name__ == "__main__":
     TAGLIST = []
 
     # connection to clickhouse
-    CLIENT = Client('clickhouse')
+    CLIENT = Client("clickhouse")
 
     for i in range(100):
 
@@ -25,10 +25,20 @@ if __name__ == "__main__":
         if Tag_to_add != [] and Tag_to_add:
             for tag in Tag_to_add:
                 TAGLIST.append(tag)
-                (CLIENT.execute('ALTER TABLE events.tmp ADD \
-                COLUMN IF NOT EXISTS ' + tag + ' UInt32 AFTER path'))
+                (
+                    CLIENT.execute(
+                        "ALTER TABLE events.tmp ADD \
+                COLUMN IF NOT EXISTS "
+                        + tag
+                        + " UInt32 AFTER path"
+                    )
+                )
 
         if insert_data:
-            (CLIENT.execute('INSERT INTO events.tmp (' + tags + ') VALUES', [insert_data]))
+            (
+                CLIENT.execute(
+                    "INSERT INTO events.tmp (" + tags + ") VALUES", [insert_data]
+                )
+            )
 
-    print(CLIENT.execute('SELECT * FROM events.tmp'))
+    print(CLIENT.execute("SELECT * FROM events.tmp"))
