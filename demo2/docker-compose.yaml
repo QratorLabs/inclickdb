@@ -16,11 +16,8 @@ data-receiver:
       - "2003:2003/udp" # plain udp
       - "2004:2004" # pickle
       - "2006:2006" # prometheus remote write
-<<<<<<< HEAD
+
     entrypoint: sh add_metrics.sh
-=======
-    entrypoint: sh /reciever_python/add_metrics.sh
->>>>>>> ab66b9d... -
+
     links:
       - clickhouse
-
