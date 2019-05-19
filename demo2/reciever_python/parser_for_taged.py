@@ -5,7 +5,7 @@ parsing data with templates
 import datetime
 
 
-def parse_tagged_data(data, taglist=[]):
+def parse_tagged_data(data, taglist):
 
     """
     :param data: string form of mectic
@@ -39,13 +39,14 @@ def parse_tagged_data(data, taglist=[]):
         tags += ", " + tag
 
         insert_data[tag] = value
+        new_tag_list = taglist[:]
         if tag not in taglist:
-            tag_to_add.append(tag)
+            new_tag_list.append(tag)
 
-    return insert_data, tag_to_add, tags
+    return insert_data, tag_to_add, tags, new_tag_list
 
 
-def is_match(tmp, data, names, taglist=[]):
+def is_match(tmp, data, names, taglist):
     """
     :param tmp: string template
     :param taglist: list of column in table
@@ -65,9 +66,8 @@ def is_match(tmp, data, names, taglist=[]):
     tags = "timestmp, path, last_volume"
 
     for i in range(len(tmp)):
-        if tmp[i] != "*":
-            if data_[i] != tmp[i]:
-                return None, None, None
+        if tmp[i] != "*" and data_[i] != tmp[i]:
+            return None, None, None
         if names[i] == "measurement":
             path += data_[i] + "."
         elif names[i] == "field":
@@ -85,7 +85,7 @@ def is_match(tmp, data, names, taglist=[]):
     return insert_data, tag_to_add, tags
 
 
-def parse_tamplate(filename, data, taglist=[]):
+def parse_tamplate(filename, data, taglist):
     """
         :param filename: string name of file
         :param taglist: list of column in table
@@ -106,4 +106,4 @@ def parse_tamplate(filename, data, taglist=[]):
 
         if insert_data:
             return insert_data, tag_to_add, tags
-    return None, None, None
+    return None

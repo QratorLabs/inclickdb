@@ -1,32 +1,37 @@
+"""insert tagged data into table"""
 import socket
 from clickhouse_driver.client import Client
-from Parser import parse_tagged_data
+from parser_for_taged import parse_tagged_data
 
 
-if __name__ == "__main__":
+def main():
+    """
+    connects to clickhouse and calls parser and inserts data
+    :return: nothing
+    """
 
-    SOCK = socket.socket()
-    PORT = 2003
-    SOCK.bind(("", PORT))
+    sock = socket.socket()
+    port = 2003
+    sock.bind(("", port))
 
-    TAGLIST = []
+    taglist = []
 
     # connection to clickhouse
-    CLIENT = Client("clickhouse")
+    client = Client("clickhouse")
 
     for i in range(100):
 
-        SOCK.listen(1)
-        conn, addr = SOCK.accept()
+        sock.listen(1)
+        conn, addr = sock.accept()
         data = conn.recv(512)
 
-        insert_data, Tag_to_add, tags = parse_tagged_data(data)
+        insert_data, tag_to_add, tags, taglist = parse_tagged_data(data, taglist)
 
-        if Tag_to_add != [] and Tag_to_add:
-            for tag in Tag_to_add:
-                TAGLIST.append(tag)
+        if tag_to_add != [] and tag_to_add:
+            for tag in tag_to_add:
+                taglist.append(tag)
                 (
-                    CLIENT.execute(
+                    client.execute(
                         "ALTER TABLE events.tmp ADD \
                 COLUMN IF NOT EXISTS "
                         + tag
@@ -36,9 +41,13 @@ if __name__ == "__main__":
 
         if insert_data:
             (
-                CLIENT.execute(
+                client.execute(
                     "INSERT INTO events.tmp (" + tags + ") VALUES", [insert_data]
                 )
             )
 
-    print(CLIENT.execute("SELECT * FROM events.tmp"))
+    print(client.execute("SELECT * FROM events.tmp"))
+
+
+if __name__ == "__main__":
+    main()

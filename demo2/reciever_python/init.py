@@ -1,3 +1,4 @@
+"""init table"""
 from clickhouse_driver.client import Client
 
 
