@@ -51,4 +51,3 @@ grafana-key:
       pip install requests && python /grafana-key/get_key.py'
   links:
   - grafana
-
