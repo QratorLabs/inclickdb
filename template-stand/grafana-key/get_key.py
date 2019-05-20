@@ -17,5 +17,3 @@ try:
         out.write(key)
 except KeyError:
     pass
-
-

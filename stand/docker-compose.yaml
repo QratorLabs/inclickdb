@@ -48,4 +48,3 @@ grafana-key:
   - ./grafana-key:/grafana-key
   links:
   - grafana
-
