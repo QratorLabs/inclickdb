@@ -16,7 +16,7 @@ def parse_tagged_data(data, taglist):
         tags - tags for insert query
     """
 
-    if isinstance(data) != str:
+    if isinstance(data, str):
         data = data.decode("utf-8")
 
     data = data.split()
@@ -95,7 +95,7 @@ def parse_tamplate(filename, data, taglist):
             tag_to_add -  tags that are not in taglist;
             tags - tags for insert query
         """
-    if isinstance(filename) == str:
+    if isinstance(filename, str):
         file = open(filename, "r")
     else:
         file = filename
